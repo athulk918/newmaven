@@ -1,12 +1,12 @@
 pipeline {
-  agent { label 'linux' }
+  agent any
   tools {
-    maven 'M3'
+    maven 'Local Maven'
   }
   stages {
     stage('checkout') {
       steps {
-        git 'https://github.com/effectivejenkins/myProject.git'
+        git credentialsId: 'athulk918', url: 'git@github.com:athulk918/newmaven.git'
       }
     }
     stage('Build') {
