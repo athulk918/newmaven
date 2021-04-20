@@ -25,5 +25,10 @@ pipeline {
         sh 'mvn package'
       }
     }
+    stage("deploy"){
+            steps{
+                sshagent(['deploy_user']) {
+                    sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war ubuntu@100.26.250.209:/opt/apache-tomcat-8.5.65/webapps"
+                                    }
   }
 }
